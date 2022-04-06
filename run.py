@@ -1,7 +1,6 @@
 from main import GetConfig, GraphConfig
 import datetime as dt
 import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
 
 # Generate configuration object
 configuration        = GetConfig('config.cfg')
@@ -17,8 +16,8 @@ if __name__ == '__main__':
 
     # Settings text
     graph_config.ax.text(
-    0.0,
-    max(configuration.accomplished_eff) + 10,
+    -0.25,
+    max(configuration.accomplished_eff) + 25,
     'Project start date : {}\nProject end date: {}\nToday : {}\nElapsed time: {} days'.
     format(
         configuration.start,
@@ -66,6 +65,8 @@ if __name__ == '__main__':
     graph_config.bar_width,
     label = 'accomplished afficience',
     color = 'darkslategray')
+    graph_config.autolabel(rect1)
+
 
     # Label names
     graph_config.ax.set_xlabel(
@@ -77,6 +78,7 @@ if __name__ == '__main__':
     'Percentage (%)',
     fontdict = graph_config.font2)
 
+    plt.style.use('fast')
     # Show the plot
     plt.legend()
     plt.show()

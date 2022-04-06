@@ -43,17 +43,17 @@ class GetConfig():
 class GraphConfig():
     def __init__(self):
         self.fig, self.ax = plt.subplots()
-        self.fonttittle = {'family':'fantasy','color':'black','size': 22, 'fontweight' : "bold"}
-        self.font = {'family':'fantasy','color':'black','size':15}
-        self.font2 = {'family':'fantasy','color':'black','size':15}
+        self.fonttittle = {'family':'sans','color':'black','size': 22, 'fontweight' : "bold"}
+        self.font = {'family':'sans','color':'black','size':15}
+        self.font2 = {'family':'sans','color':'black','size':15}
         self.bar_width = 0.2
-        self.tittle_pad = 60
+        self.tittle_pad = 65
         self.xlabel_pad = 15.0
-    def autolabel(rectangle_group):
+    def autolabel(self, rectangle_group):
         for rect in rectangle_group:
             height = rect.get_height()
     
             self.ax.annotate(str(height), xy = (rect.get_x() + rect.get_width() / 4, height),
-            xytext = (0, 3), textcoords = 'offset points',
+            xytext = (30, -10), textcoords = 'offset points',
             color = 'grey')
     
