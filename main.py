@@ -13,16 +13,8 @@ class GraphGen():
             print(secs)
             return secs
         return secs
-    def get_planned(self, show = True):
-        if show:
-            print(self.planned)
-            return self.planned
-        return self.planned
-    def get_accomplished(self, show = True):
-        if show:
-            print(self.accomplished)
-            return self.accomplished
-        return self.accomplished
+    def get_keys(self):
+        pass
     def get_values(self, section, show = True):
         pass
         
