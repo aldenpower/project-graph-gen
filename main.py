@@ -1,9 +1,10 @@
 import configparser
 
-class GraphGen():
+class GetConfig():
     def __init__(self, configfile):
         self.config = configparser.ConfigParser()
         self.config_ = self.config.read(configfile)
+        self.settings = self.config['settings']
         self.planned = self.config['planned']
         self.accomplished = self.config['accomplished']
         self.replanned = self.config['replanned']
@@ -13,8 +14,13 @@ class GraphGen():
             print(secs)
             return secs
         return secs
-    def get_keys(self):
-        pass
-    def get_values(self, section, show = True):
-        pass
-        
+    def get_values(self, section):
+        keys, values = [], []
+        for key in section:
+            keys.append(key) 
+        for value in range(0, len(keys)):
+            var = section[keys[value]]
+            values.append(float(var))
+
+        return keys, values
+
