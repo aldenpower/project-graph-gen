@@ -1,3 +1,4 @@
+from distutils.command.config import config
 from main import GetConfig, GraphConfig
 import datetime as dt
 import matplotlib.pyplot as plt
@@ -5,8 +6,6 @@ import matplotlib.pyplot as plt
 # Generate configuration object
 configuration        = GetConfig('config.cfg')
 graph_config         = GraphConfig(configuration.style)
-
-print(plt.style.available)
 
 if __name__ == '__main__':
     # Tittle configuration
@@ -19,7 +18,7 @@ if __name__ == '__main__':
     # Settings text
     graph_config.ax.text(
     graph_config.xtext,
-    max(configuration.accomplished_eff) + 25,
+    max(configuration.accomplished_eff) + 15,
     'Project start date : {}\nProject end date: {}\nToday : {}\nElapsed time: {} days'.
     format(
         configuration.start,
@@ -34,40 +33,44 @@ if __name__ == '__main__':
     planned_line = graph_config.ax.plot(
     configuration.planned_values[0],
     configuration.planned_values[1],
-    marker = 'D',
-    color = 'green',
+    marker = graph_config.planned_line_marker,
+    color = graph_config.planned_line_color,
     label = 'planned'
     )
+    graph_config.annotate_planned(configuration.planned_values[0], configuration.planned_values[1])
+    # Planned line values
+    # graph_config.annotate_line(configuration.planned_values, graph_config.planned_annotate_offset)
     
     # Accomplished line
     accomplished_line = graph_config.ax.plot(
     configuration.accomplished_values[0],
     configuration.accomplished_values[1],
-    marker = 'h',
-    color = 'blue',
+    marker = graph_config.accomplished_line_marker,
+    color = graph_config.accomplished_line_color,
     label = 'accomplished'
     )
     
+    graph_config.annotate_accomplished(configuration.accomplished_values[0], configuration.accomplished_values[1])
+    # graph_config.annotate_line(configuration.accomplished_values, graph_config.accomplished_annotate_offset)
+
     # Replanned line
     replanned_line = graph_config.ax.plot(
     configuration.replanned_values[0],
     configuration.replanned_values[1],
-    marker = 's',
-    color = 'red',
+    marker = graph_config.replanned_line_marker,
+    color = graph_config.replanned_line_color,
     label = 'replanned'
     )
-
-    # Positioning efficience bars
-    x_accomplished = [x for x in range(len(configuration.accomplished_eff))]
+    graph_config.annotate_replanned(configuration.replanned_values[0], configuration.replanned_values[1])
 
     # Rectangle
     rect1 = graph_config.ax.bar(
-    x_accomplished,
+    configuration.accomplished_values[0],
     configuration.accomplished_eff_form,
     graph_config.bar_width,
     label = 'accomplished efficience',
     color = 'darkslategray')
-    graph_config.autolabel(rect1)
+    graph_config.annotate_eff(configuration.accomplished_eff, configuration.accomplished_eff_form)
 
 
     # Label names
