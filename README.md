@@ -47,3 +47,7 @@ _Clone this repository_
 _Enter in the repository directory and install dependencies through pip_
 
 6 - pip install -r requirements.txt
+
+
+## Run
+7 - python3 run.py
