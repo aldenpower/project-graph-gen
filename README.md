@@ -16,7 +16,7 @@ _For more details visit_ [RASC](https://www.braziliansinrobotics.com/)
 
 ## Installation
 
-***Create Python 3 virtual environment (recommended)***
+**Create Python 3 virtual environment (recommended)**
 
 _Install **pip** (standard package manager for Python)_
 
@@ -37,3 +37,13 @@ _Activate your virtual environment_
 _Check your environment_
 
 5 - which python
+
+**Install dependencies**
+
+_Clone this repository_
+
+5 - git clone https://github.com/aldenpower/project-graph-gen.git
+
+_Enter in the repository directory and install dependencies through pip_
+
+6 - pip install -r requirements.txt
