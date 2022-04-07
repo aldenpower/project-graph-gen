@@ -78,6 +78,13 @@ if __name__ == '__main__':
     'Percentage (%)',
     fontdict = graph_config.font2)
 
-    # Show the plot
-    plt.legend()
+    # Label configuration
+    plt.legend(
+    loc = (graph_config.label_location_x,
+           graph_config.label_location_y
+          ),
+           ncol = graph_config.label_ncols
+    )
+
+    # Show the graph
     plt.show()

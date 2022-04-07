@@ -54,12 +54,15 @@ class GraphConfig():
         self.font2 = {'family':'sans','color':'black','size':15}
         self.bar_width = 0.2
         self.tittle_pad = 65
-        self.xlabel_pad = 15.0
+        self.xlabel_pad = 6.0
+        self.label_location_x = 0.58
+        self.label_location_y = -0.13
+        self.label_ncols = 4
     def autolabel(self, rectangle_group):
         for rect in rectangle_group:
             height = rect.get_height()
     
             self.ax.annotate(str(height), xy = (rect.get_x() + rect.get_width() / 4, height),
-            xytext = (20, -10), textcoords = 'offset points',
+            xytext = (30, -10), textcoords = 'offset points',
             color = 'grey')
     
