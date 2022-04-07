@@ -1,6 +1,7 @@
 import configparser
 import matplotlib.pyplot as plt
 import datetime as dt
+import re
 
 class GetConfig():
     def __init__(self, configfile):
@@ -92,11 +93,9 @@ class GraphConfig():
         # Catch the min week num for axis value
         min_num = []
         for var in x:
-            num = ""
-            for c in var:
-                if c.isdigit() and var:
-                    num = num + c
-                    min_num.append(int(num))
+            num = re.findall(r'\d+', var)
+            print(num) 
+            min_num.append(int(num[0]))
         
         minor = min(min_num)
         if minor == 0:
@@ -111,12 +110,9 @@ class GraphConfig():
         # Catch the min week num for axis value
         min_num = []
         for var in x:
-            num = ""
-            for c in var:
-                if c.isdigit():
-                    num = num + c
-                    min_num.append(int(num)
-                    )
+            num = re.findall(r'\d+', var)
+            print(num) 
+            min_num.append(int(num[0]))
         minor = min(min_num)
         if minor == 0:
             for n, c in zip(range(0, len(x)), value):
@@ -130,12 +126,9 @@ class GraphConfig():
         # Catch the min week num for axis value
         min_num = []
         for var in x:
-            num = ""
-            for c in var:
-                if c.isdigit():
-                    num = num + c
-                    min_num.append(int(num))
-
+            num = re.findall(r'\d+', var)
+            print(num) 
+            min_num.append(int(num[0]))
         minor = min(min_num)
         if minor == 0:
             for n, c in zip(range(0, len(x) + minor), value):
