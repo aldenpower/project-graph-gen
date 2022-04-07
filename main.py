@@ -8,6 +8,7 @@ class GetConfig():
         self.config_ = self.config.read(configfile)
         self.settings = self.config['settings']
         self.tittle = self.settings['tittle']
+        self.style = self.settings['style']
         self.start = dt.date.fromisoformat(self.settings['start'])
         self.end = dt.date.fromisoformat(self.settings['end'])
         self.planned = self.config['planned']
@@ -47,7 +48,12 @@ class GetConfig():
         return eff 
 
 class GraphConfig():
-    def __init__(self):
+    def __init__(self, style):
+        # self.st = plt.style.use('bmh')
+        # self.st = plt.style.use('Solarize_Light2')
+        # self.st = plt.style.use('dark_background')
+        # self.st = plt.style.use('ggplot')
+        self.st = plt.style.use(style)
         self.fig, self.ax = plt.subplots()
         self.fonttittle = {'family':'sans','color':'black','size': 22, 'fontweight' : "bold"}
         self.font = {'family':'sans','color':'black','size':15}
@@ -55,6 +61,7 @@ class GraphConfig():
         self.bar_width = 0.2
         self.tittle_pad = 65
         self.xlabel_pad = 6.0
+        self.xtext = -0.48
         self.label_location_x = 0.58
         self.label_location_y = -0.13
         self.label_ncols = 4

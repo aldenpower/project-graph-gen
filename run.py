@@ -4,7 +4,9 @@ import matplotlib.pyplot as plt
 
 # Generate configuration object
 configuration        = GetConfig('config.cfg')
-graph_config         = GraphConfig()
+graph_config         = GraphConfig(configuration.style)
+
+print(plt.style.available)
 
 if __name__ == '__main__':
     # Tittle configuration
@@ -16,7 +18,7 @@ if __name__ == '__main__':
 
     # Settings text
     graph_config.ax.text(
-    -0.48,
+    graph_config.xtext,
     max(configuration.accomplished_eff) + 25,
     'Project start date : {}\nProject end date: {}\nToday : {}\nElapsed time: {} days'.
     format(
