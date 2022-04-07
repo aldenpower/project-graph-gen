@@ -61,9 +61,9 @@ if __name__ == '__main__':
     # Rectangle
     rect1 = graph_config.ax.bar(
     x_accomplished,
-    configuration.accomplished_eff,
+    configuration.accomplished_eff_form,
     graph_config.bar_width,
-    label = 'accomplished afficience',
+    label = 'accomplished efficience',
     color = 'darkslategray')
     graph_config.autolabel(rect1)
 
@@ -78,7 +78,6 @@ if __name__ == '__main__':
     'Percentage (%)',
     fontdict = graph_config.font2)
 
-    plt.style.use('fast')
     # Show the plot
     plt.legend()
     plt.show()

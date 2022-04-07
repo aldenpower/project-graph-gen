@@ -18,6 +18,7 @@ class GetConfig():
         self.accomplished_values = self.get_values(self.accomplished)
         self.replanned_values = self.get_values(self.replanned)
         self.accomplished_eff = self.get_eff(self.accomplished_values[1], self.planned_values[1])
+        self.accomplished_eff_form = self.get_eff(self.accomplished_values[1], self.planned_values[1], format = True)
     def get_sections(self, show = True):
         if show:
             secs = self.config.sections()
@@ -34,9 +35,14 @@ class GetConfig():
                 values.append(float(var))
             else:
                 values.append(var)
-
         return keys, values
-    def get_eff(self, value1, value2):
+
+    def get_eff(self, value1, value2, format = False):
+        if format:
+            eff = [a / b * 100 for a, b in zip(value1, value2)]
+            eff_rounded = [float(f'{a:.2f}') for a in eff]
+            return eff_rounded
+
         eff = [a / b * 100 for a, b in zip(value1, value2)]
         return eff 
 
@@ -54,6 +60,6 @@ class GraphConfig():
             height = rect.get_height()
     
             self.ax.annotate(str(height), xy = (rect.get_x() + rect.get_width() / 4, height),
-            xytext = (30, -10), textcoords = 'offset points',
+            xytext = (20, -10), textcoords = 'offset points',
             color = 'grey')
     
