@@ -16,7 +16,7 @@ if __name__ == '__main__':
 
     # Settings text
     graph_config.ax.text(
-    -0.25,
+    -0.48,
     max(configuration.accomplished_eff) + 25,
     'Project start date : {}\nProject end date: {}\nToday : {}\nElapsed time: {} days'.
     format(
