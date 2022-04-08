@@ -68,13 +68,16 @@ class GraphConfig():
         self.planned_line_color = "black"
         self.planned_annotate_offset = 3
         self.planned_line_marker = "s"
+        self.annotate_planned_line_y = 2
         # Accomplished config
         self.accomplished_line_color = "green"
         self.accomplished_annotate_offset = - 3
         self.accomplished_line_marker = "o"
+        self.annotate_accomplished_line_y = 6
         # Replanned config
         self.replanned_line_color = "red"
         self.replanned_line_marker = "s"
+        self.annotate_replanned_line_y = 11
     def autolabel(self, rectangle_group):
         for rect in rectangle_group:
             height = rect.get_height()
@@ -82,57 +85,27 @@ class GraphConfig():
             self.ax.annotate(str(height), xy = (rect.get_x() + rect.get_width() / 4, height),
             xytext = (-0.3, 1.0), textcoords = 'offset points',
             color = 'green')
-    def annotate_line(self, line, offset):
+    def annotate_line_in_place(self, line, offset):
         for x, y, n in zip(line[0], line[1], range(0, len(line[0]))):
             self.ax.annotate(line[1][n], (x, y + offset))
 
     def annotate_eff(self, x, value):
         for n, c in zip(range(0, len(x)), value):
             self.ax.annotate(c, (n - 0.4, 2), color = self.annotate_rect_color, fontweight = "bold")
-    def annotate_planned(self, x, value):
-        # Catch the min week num for axis value
+    def annotate_line_bottom(self, x, value, y, color):
+        # Catch the min week num for axis value loop
         min_num = []
         for var in x:
             num = re.findall(r'\d+', var)
-            print(num) 
             min_num.append(int(num[0]))
-        
-        minor = min(min_num)
-        if minor == 0:
-            for n, c in zip(range(0, len(x)), value):
-                self.ax.annotate(c, (n + 0.16, 2), color = self.planned_line_color, fontweight = "bold")
-        else:
-            for n, c in zip(range(minor - 1, len(x) + minor), value):
-                self.ax.annotate(c, (n + 0.16, 2), color = self.planned_line_color, fontweight = "bold")
-
-
-    def annotate_accomplished(self, x, value):
-        # Catch the min week num for axis value
-        min_num = []
-        for var in x:
-            num = re.findall(r'\d+', var)
-            print(num) 
-            min_num.append(int(num[0]))
-        minor = min(min_num)
-        if minor == 0:
-            for n, c in zip(range(0, len(x)), value):
-                self.ax.annotate(c, (n + 0.16, 6), color = self.accomplished_line_color, fontweight = "bold")
-        else:
-            for n, c in zip(range(minor - 1, len(x) + minor), value):
-                self.ax.annotate(c, (n + 0.16, 6), color = self.accomplished_line_color, fontweight = "bold")
-
-    
-    def annotate_replanned(self, x, value):
-        # Catch the min week num for axis value
-        min_num = []
-        for var in x:
-            num = re.findall(r'\d+', var)
-            print(num) 
-            min_num.append(int(num[0]))
-        minor = min(min_num)
-        if minor == 0:
-            for n, c in zip(range(0, len(x) + minor), value):
-                self.ax.annotate(c, (n + 0.16, 11), color = self.replanned_line_color, fontweight = "bold")
-        else:
-            for n, c in zip(range(minor - 1, len(x) + minor), value):
-                self.ax.annotate(c, (n + 0.16, 11), color = self.replanned_line_color, fontweight = "bold")
+        # Supress error if config file section is empty
+        try:
+            minor = min(min_num)
+            if minor == 0:
+                for n, c in zip(range(0, len(x)), value):
+                    self.ax.annotate(c, (n + 0.16, y), color = color, fontweight = "bold")
+            else:
+                for n, c in zip(range(minor - 1, len(x) + minor), value):
+                    self.ax.annotate(c, (n + 0.16, y), color = color, fontweight = "bold")
+        except:
+            pass

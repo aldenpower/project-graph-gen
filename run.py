@@ -37,7 +37,12 @@ if __name__ == '__main__':
     color = graph_config.planned_line_color,
     label = 'planned'
     )
-    graph_config.annotate_planned(configuration.planned_values[0], configuration.planned_values[1])
+    graph_config.annotate_line_bottom(
+    configuration.planned_values[0],
+    configuration.planned_values[1],
+    graph_config.annotate_planned_line_y,
+    graph_config.planned_line_color
+    )
     # Planned line values
     # graph_config.annotate_line(configuration.planned_values, graph_config.planned_annotate_offset)
     
@@ -50,7 +55,12 @@ if __name__ == '__main__':
     label = 'accomplished'
     )
     
-    graph_config.annotate_accomplished(configuration.accomplished_values[0], configuration.accomplished_values[1])
+    graph_config.annotate_line_bottom(
+    configuration.accomplished_values[0],
+    configuration.accomplished_values[1],
+    graph_config.annotate_accomplished_line_y,
+    graph_config.accomplished_line_color
+    )
     # graph_config.annotate_line(configuration.accomplished_values, graph_config.accomplished_annotate_offset)
 
     # Replanned line
@@ -61,7 +71,12 @@ if __name__ == '__main__':
     color = graph_config.replanned_line_color,
     label = 'replanned'
     )
-    graph_config.annotate_replanned(configuration.replanned_values[0], configuration.replanned_values[1])
+    graph_config.annotate_line_bottom(
+    configuration.replanned_values[0],
+    configuration.replanned_values[1],
+    graph_config.annotate_replanned_line_y,
+    graph_config.replanned_line_color
+    )
 
     # Rectangle
     rect1 = graph_config.ax.bar(
@@ -69,8 +84,11 @@ if __name__ == '__main__':
     configuration.accomplished_eff_form,
     graph_config.bar_width,
     label = 'accomplished efficience',
-    color = 'darkslategray')
-    graph_config.annotate_eff(configuration.accomplished_eff, configuration.accomplished_eff_form)
+    color = graph_config.annotate_rect_color)
+
+    graph_config.annotate_eff(
+    configuration.accomplished_eff,
+    configuration.accomplished_eff_form)
 
 
     # Label names
