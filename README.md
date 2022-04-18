@@ -50,4 +50,10 @@ _Enter in the repository directory and install dependencies through pip_
 
 
 ## Run
+_You need to edit the configuration file to create the graph based in your project data_
+
+>config.cfg
+
+_Now you can run !_
+
 7 - python3 run.py
