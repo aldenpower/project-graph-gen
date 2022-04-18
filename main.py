@@ -56,7 +56,7 @@ class GraphConfig():
         self.fonttittle = {'family':'sans','color':'black','size': 22, 'fontweight' : "bold"}
         self.font = {'family':'sans','color':'black','size':15}
         self.font2 = {'family':'sans','color':'black','size':15}
-        self.bar_width = 0.2
+        self.bar_width = 0.9
         self.tittle_pad = 65
         self.xlabel_pad = 6.0
         self.xtext = -0.48
@@ -67,24 +67,24 @@ class GraphConfig():
         # Planned config
         self.planned_line_color = "black"
         self.planned_annotate_offset = 3
-        self.planned_line_marker = "s"
+        self.planned_line_marker = None
         self.annotate_planned_line_y = 2
         # Accomplished config
         self.accomplished_line_color = "green"
         self.accomplished_annotate_offset = - 3
-        self.accomplished_line_marker = "o"
+        self.accomplished_line_marker = None
         self.annotate_accomplished_line_y = 6
         # Replanned config
         self.replanned_line_color = "red"
-        self.replanned_line_marker = "s"
+        self.replanned_line_marker = None
         self.annotate_replanned_line_y = 11
     def autolabel(self, rectangle_group):
         for rect in rectangle_group:
             height = rect.get_height()
     
-            self.ax.annotate(str(height), xy = (rect.get_x() + rect.get_width() / 4, height),
-            xytext = (-0.3, 1.0), textcoords = 'offset points',
-            color = 'green')
+            self.ax.annotate(str(height), xy = (rect.get_x(), height),
+            xytext = (0.3, 1.0), textcoords = 'offset points',
+            color = 'green', fontweight = "bold")
     def annotate_line_in_place(self, line, offset):
         for x, y, n in zip(line[0], line[1], range(0, len(line[0]))):
             self.ax.annotate(line[1][n], (x, y + offset))

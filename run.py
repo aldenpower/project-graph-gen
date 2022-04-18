@@ -1,4 +1,3 @@
-from distutils.command.config import config
 from main import GetConfig, GraphConfig
 import datetime as dt
 import matplotlib.pyplot as plt
@@ -86,9 +85,12 @@ if __name__ == '__main__':
     label = 'accomplished efficience',
     color = graph_config.annotate_rect_color)
 
-    graph_config.annotate_eff(
-    configuration.accomplished_eff,
-    configuration.accomplished_eff_form)
+    graph_config.autolabel(rect1)
+
+    # Uncomment for annotate rect at bottom
+    # graph_config.annotate_eff(
+    # configuration.accomplished_eff,
+    # configuration.accomplished_eff_form)
 
 
     # Label names
