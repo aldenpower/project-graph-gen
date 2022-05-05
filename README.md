@@ -57,3 +57,7 @@ _You need to edit the configuration file to create the graph based in your proje
 _Now you can run !_
 
 7 - python3 run.py
+
+_The graph_
+
+![grap](./graph.png)
